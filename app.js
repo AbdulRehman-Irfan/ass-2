@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/api/users');
 var mobilesRouter = require('./routes/api/mobiles');
 var config = require('config');
+var cors = require('cors');
 
 var app = express();
 
@@ -29,6 +30,11 @@ app.use('/api/mobiles', mobilesRouter);
 app.use(function(req, res, next) {
   next(createError(404));
 });
+app.use(cors(
+  {
+    origin: '*',
+  }
+));
 
 // error handler
 app.use(function(err, req, res, next) {
